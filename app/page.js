@@ -1,6 +1,5 @@
 import getStripe from "@/utils/get-stripe";
 import Image from "next/image";
-import Head from "next/head"; // Correct import for Head
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Container from '@mui/material/Container'; // Ensure correct import
 import AppBar from '@mui/material/AppBar';
@@ -51,15 +50,15 @@ export default function Home() {
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
             <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
             <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
             <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
           </Grid>
         </Grid>
@@ -67,18 +66,37 @@ export default function Home() {
       <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
         <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
-            <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
+        <Grid item xs={12} md={6}>
+          <Box sx={{
+            p:3, 
+            border: '1px, solid',
+            borderColor: 'gray.300',
+            borderRadius: 2,
+            }}>
+            <Typography variant="h5" gutterBottom>Basic</Typography>
+            <Typography variant="h6" gutterBottom>$5 / month</Typography>
+            <Typography>{' '} Access to basic flashcard features and limited storage.</Typography>
+            <Button variant="contained" color= "primary" sx={{mt: 2}}>
+              Choose basic
+            </Button>
+          </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
-            <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
+          <Grid item xs={12} md={6}>
+          <Box sx={{
+            p:3, 
+            border: '1px, solid',
+            borderColor: 'gray.300',
+            borderRadius: 2,
+            }}>
+            <Typography variant="h5" gutterBottom>Pro</Typography>
+            <Typography variant="h6" gutterBottom>$10 / month</Typography>
+            <Typography>{' '} Unlimited flashcards and storage, with priority support.</Typography>
+            <Button variant="contained" color= "primary" sx={{mt: 2}}>
+              Choose Pro
+            </Button>
+          </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6">Easy Text Input</Typography>
-            <Typography>Simply input your text and let your software do the rest. Creating flashcards has never been easier</Typography>
-          </Grid>
+          
         </Grid>
       </Box>
     </Container>
