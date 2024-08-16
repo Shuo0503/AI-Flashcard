@@ -1,9 +1,12 @@
 
-
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1", // Ensure this is the correct base URL
+  apiKey: process.env.OPENROUTER_API_KEY,
+});
+
 
 const systemPrompt = `
 You are a flashcard creator. You take in text and create exactly 10 flashcards from it.
@@ -38,7 +41,7 @@ export async function POST(req) {
       { role: 'system', content: systemPrompt },
       { role: 'user', content: data },
     ],
-    model: 'gpt-4o',
+    model: "meta-llama/llama-3.1-8b-instruct:free",
     response_format: { type: 'json_object' },
   })
 
@@ -48,3 +51,4 @@ export async function POST(req) {
   // Return the flashcards as a JSON response
   return NextResponse.json(flashcards.flashcards)
 }
+    
