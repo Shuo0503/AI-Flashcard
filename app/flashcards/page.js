@@ -26,6 +26,7 @@ export default function Flashcards() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const collections = docSnap.data().flashcards || [];
+        console.log(collections)
         setFlashcards(collections);
       } else {
         await setDoc(docRef), { flashcards: [] };
@@ -35,11 +36,11 @@ export default function Flashcards() {
   }, [user]);
 
   if (!isLoaded || !isSignedIn) {
-    return <></>;
+    return <>Please Sign In to see your flashcards!</>;
   }
 
   const handleCardClick = (id) => {
-    router.push(`/flahscard?id=${id}`);
+    router.push(`/flashcard?id=${id}`);
   };
 
   return (
@@ -54,7 +55,7 @@ export default function Flashcards() {
         {flashcards.map((flashcard, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card>
-              <CardActionArea onClick={() => handleCardClick(index)}>
+              <CardActionArea onClick={() => handleCardClick(id)}>
                 <CardContent>
                   <Typography variant="h6">{flashcard.name}</Typography>
                 </CardContent>
