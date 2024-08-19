@@ -6,6 +6,7 @@ import {
   collection,
   writeBatch,
   getDoc,
+  setDoc
 } from "firebase/firestore"; // Ensure correct imports
 import { useState } from "react";
 import { useRouter } from "next/navigation";
