@@ -6,6 +6,7 @@ import {
   collection,
   writeBatch,
   getDoc,
+  setDoc
 } from "firebase/firestore"; // Ensure correct imports
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -203,13 +204,13 @@ export default function Generate() {
                       >
                         <div>
                           <div>
-                            <Typography variant="h6">Front:</Typography>
+                            {/* <Typography variant="h6">Front:</Typography> */}
                             <Typography>{flashcard.front}</Typography>
                           </div>
                           <div>
-                            <Typography variant="h6" sx={{ mt: 2 }}>
+                            {/* <Typography variant="h6" sx={{ mt: 2 }}>
                               Back:
-                            </Typography>
+                            </Typography> */}
                             <Typography>{flashcard.back}</Typography>
                           </div>
                         </div>
