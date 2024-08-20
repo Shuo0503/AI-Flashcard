@@ -1,3 +1,4 @@
+
 'use client'
 
 import {useUser} from '@clerk/nextjs'
@@ -37,16 +38,16 @@ export default function Flashcard(){
     async function getFlashcard() {
       if (!search || !user) return;
       const colRef = collection(doc(collection(db, "users"), user.id), search);
-      const docs = await getDocs(docRef);
+      const docs = await getDocs(colRef);
       const flashcards = []
 
       docs.forEach((doc) => {
         flashcards.push({id: doc.id, ...doc.data()})
       })
-      setFlashcards(flascards)
+      setFlashcards(flashcards)
     }
     getFlashcard();
-  }, [user, search]);
+  }, [search, user]);
 
   const handleCardClick = (id) => {
     setFlipped((prev) => ({
@@ -60,20 +61,13 @@ export default function Flashcard(){
   }
 
   return (
-    <Container maxWidth = "100vw"
+    <Container maxWidth = "md"
     >
-        <Grid container spacing = {3}
-        sx={{mt: 4}}>
-            {flashcards.length > 0 && (
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom>
-            Flashcards Preview
-          </Typography>
-          <Grid container spacing={2}>
-            {flashcards.map((flashcard, index) => (
+        <Grid container spacing = {3} sx={{mt: 4}}>
+        {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card>
-                  <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
+                  <CardActionArea onClick={() => handleCardClick(index)}>
                     <CardContent>
                       <Box
                         sx={{
@@ -107,13 +101,13 @@ export default function Flashcard(){
                       >
                         <div>
                           <div>
-                            <Typography variant="h6">Front:</Typography>
+                            {/* <Typography variant="h6">Front:</Typography> */}
                             <Typography>{flashcard.front}</Typography>
                           </div>
                           <div>
-                            <Typography variant="h6" sx={{ mt: 2 }}>
+                            {/* <Typography variant="h6" sx={{ mt: 2 }}>
                               Back:
-                            </Typography>
+                            </Typography> */}
                             <Typography>{flashcard.back}</Typography>
                           </div>
                         </div>
@@ -123,14 +117,6 @@ export default function Flashcard(){
                 </Card>
               </Grid>
             ))}
-          </Grid>
-          <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-            <Button variant="contained" color="secondary" onClick={handleOpen}>
-              Save
-            </Button>
-          </Box>
-        </Box>
-      )}
 
         </Grid>
 
